@@ -16,7 +16,7 @@ export function formatTweet (tweet, author, authedUser, parentTweet ) {
     avatar: avatarURL,
     optionOne,
     // answers,
-    // authedUser,
+    authedUser,
     // likes: likes.length,
     // replies: replies.length,
     // hasLiked: likes.includes(authedUser),
