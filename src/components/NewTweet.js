@@ -46,7 +46,7 @@ class NewTweet extends Component {
       return <Redirect to='/' />
     }
 
-    const tweetLeft = 280 - text.length
+    // const tweetLeft = 280 - text.length
 
     return (
       <div>
@@ -68,7 +68,6 @@ class NewTweet extends Component {
               {tweetLeft}
             </div>
           )} */}
-          {/* comment from big HP */}
           <button
             className='btn'
             type='submit'
