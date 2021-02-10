@@ -68,6 +68,7 @@ class NewTweet extends Component {
               {tweetLeft}
             </div>
           )} */}
+          {/* comment from big HP */}
           <button
             className='btn'
             type='submit'
