@@ -5,42 +5,42 @@ import { Redirect } from 'react-router-dom'
 
 class NewTweet extends Component {
   state = {
-    text: '',
-    text2: '',
+    optionOneText: '',
+    optionTwoText: '',
     toHome: false,
   }
   handleChange = (e) => {
-    const text = e.target.value
+    const optionOneText = e.target.value
 
     this.setState(() => ({
-      text
+      optionOneText
     }))
   }
 
   handleChange2 = (e) => {
-    const text2 = e.target.value
+    const optionTwoText = e.target.value
 
     this.setState(() => ({
-      text2
+      optionTwoText
     }))
   }
 
   handleSubmit = (e) => {
     e.preventDefault()
 
-    const { text } = this.state
+    const { optionOneText, optionTwoText } = this.state
     const { dispatch, id } = this.props
 
-    dispatch(handleAddTweet(text, id))
+    dispatch(handleAddTweet(optionOneText, optionTwoText))
 
     this.setState(() => ({
-      text: '',
-      text2: '',
+      optionOneText: '',
+      optionTwoText: '',
       toHome: id ? false : true,
     }))
   }
   render() {
-    const { text, text2, toHome } = this.state
+    const { optionOneText, optionTwoText, toHome } = this.state
 
     if (toHome === true) {
       return <Redirect to='/' />
@@ -53,9 +53,9 @@ class NewTweet extends Component {
         <h3 className='center'>Create a New Question</h3>
         <h4 style={{paddingLeft:'20%'}}>Would you rather...</h4>
         <form className='new-tweet' onSubmit={this.handleSubmit}>
-        <input type="text" name="option1" id="option1" placeholder="Enter Option one here" value={text} onChange={this.handleChange} required></input>
+        <input type="text" name="option1" id="option1" placeholder="Enter Option one here" value={optionOneText} onChange={this.handleChange} required></input>
         <h3 className='center'>Or</h3>
-        <input type="text" name="option2" id="option2" placeholder="Enter Option two here" value={text2} onChange={this.handleChange2} required></input>
+        <input type="text" name="option2" id="option2" placeholder="Enter Option two here" value={optionTwoText} onChange={this.handleChange2} required></input>
           {/* <textarea
             placeholder="What's happening?"
             value={text}
@@ -71,7 +71,7 @@ class NewTweet extends Component {
           <button
             className='btn'
             type='submit'
-            disabled={text === '' || text2 === ''}>
+            disabled={optionOneText === '' || optionTwoText === ''}>
               Submit
           </button>
         </form>

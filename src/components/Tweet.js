@@ -51,7 +51,7 @@ class Tweet extends Component {
                 Replying to @{parent.author}
               </button>
             )} */}
-            <p>...{optionOne.text.slice(0, 15)}...</p>
+            {/* <p>...{optionOne.text.slice(0, 15)}...</p> */}
             {/* <p>...{Object.keys(answers)}...</p> */}
             {/* <p>{Object.keys(this.props.users)}</p> */}
           </div>
