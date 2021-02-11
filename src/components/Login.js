@@ -24,12 +24,12 @@ const options = [
 ];
 
 class Login extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     // fruit: "banana",
-  //     value: 1,
-  //   };
+  constructor(props) {
+    super(props);
+    this.state = {
+      // fruit: "banana",
+      value: 1,
+    };
 
     this.handleChange = this.handleChange.bind(this);
   }

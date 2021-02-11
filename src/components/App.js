@@ -27,7 +27,7 @@ class App extends Component {
               : <div>
                   <Route path='/' exact component={Dashboard} />
                   <Route path='/Answered'  component={Answered} />
-                  {/* <Route path='/Unanswered'  component={Unanswered} /> */}
+                  <Route path='/Unanswered'  component={Unanswered} />
                   <Route path='/tweet/:id' component={TweetPage} />
                   <Route path='/new' component={NewTweet} />
                 </div>}
@@ -40,7 +40,6 @@ class App extends Component {
 
 function mapStateToProps ({ authedUser }) {
   return {
-    authedUser,
     loading: authedUser === null
   }
 }

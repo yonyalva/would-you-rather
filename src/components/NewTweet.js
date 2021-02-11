@@ -47,8 +47,7 @@ class NewTweet extends Component {
       return <Redirect to='/' />
     }
 
-    {!this.props.authedUser &&
-      <Login />}
+    // const tweetLeft = 280 - text.length
 
     return (
       <div>
@@ -87,18 +86,9 @@ class NewTweet extends Component {
   }
 }
 
-<<<<<<< HEAD
 function mapStateToProps ({ authedUser }) {
   return {
     authedUser
-=======
-function mapStateToProps ({ tweets, users, authedUser }) {
-  return {
-    authedUser,
-    users,
-    tweetIds: Object.keys(tweets)
-      .sort((a,b) => tweets[b].timestamp - tweets[a].timestamp)
->>>>>>> 4b52de3e282f39e2f705d28dec561075f4b39908
   }
 }
 
