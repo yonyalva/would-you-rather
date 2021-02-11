@@ -12,7 +12,7 @@ class Tweet extends Component {
   handleLike = (e) => {
     e.preventDefault()
 
-    const { dispatch, tweet, authedUser } = this.props
+    const { dispatch, tweet, authedUser, user } = this.props
 
     dispatch(handleToggleTweet({
       id: tweet.id,
@@ -32,7 +32,7 @@ class Tweet extends Component {
     }
 
     const {
-      name, avatar, timestamp, text, optionOne, hasLiked, likes, replies, id, parent
+      name, avatar, timestamp, text, optionOne, authedUser, hasLiked, likes, replies, id, parent
     } = tweet
 
     return (
@@ -64,6 +64,8 @@ class Tweet extends Component {
                 : <TiHeartOutline className='tweet-icon'/>} */}
                 View Poll
             </button>
+            peo
+            {authedUser}
             {/* Object.keys(this.props.users[this.props.authedUser].answers */}
             {/* <span>{likes !== 0 && likes}</span>
           </div> */}

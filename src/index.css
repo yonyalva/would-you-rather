@@ -54,7 +54,7 @@ a {
   flex-direction: row;
   /* justify-content: flex-start; */
   justify-content: center;
-  text-decoration: none;
+  text-decoration:none;
 }
 
 .nav li:first-child {

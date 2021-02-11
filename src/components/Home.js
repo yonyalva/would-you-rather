@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import Tweet from './Tweet'
 import { NavLink } from 'react-router-dom'
 import Unanswered from './Unanswered'
+import Login from './Login'
 
 class Dashboard extends Component {
   render() {
@@ -38,7 +39,10 @@ class Dashboard extends Component {
             </li>
           ))}
         </ul> */}
-        <Unanswered />
+        {!this.props.authedUser &&
+        <Login />}
+        {this.props.authedUser &&
+        <Unanswered />}
       </div>
     )
   }
