@@ -1,8 +1,18 @@
-import React, { Component } from 'react'
-import { NavLink } from 'react-router-dom'
+import React, { Component, Fragment } from 'react'
+import { NavLink, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
+import {setAuthedUser} from '../actions/authedUser.js'
 
 class Nav extends Component {
+  signOut = () =>{
+    // e.preventDefault()
+    const { dispatch } = this.props
+
+    dispatch(setAuthedUser(""))
+    // return    <Redirect  to="/" />
+
+  }
+
   render() {
     return (
       <nav className='nav'>
@@ -22,12 +32,15 @@ class Nav extends Component {
               Leader Board
             </NavLink>
           </li>
+          {this.props.authedUser &&
+          <Fragment>
           <li>
             <label>Hello {this.props.authedUser}!</label>
           </li>
           <li>
-            <button>Sign Out</button>
+            <button onClick={() => {this.signOut()}}>Sign Out</button>
           </li>
+          </Fragment>}
         </ul>
       </nav>
     )
