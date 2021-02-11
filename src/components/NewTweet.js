@@ -1,7 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { handleAddTweet } from '../actions/tweets'
 import { Redirect } from 'react-router-dom'
+import Login from './Login'
 
 class NewTweet extends Component {
   state = {
@@ -46,10 +47,15 @@ class NewTweet extends Component {
       return <Redirect to='/' />
     }
 
-    // const tweetLeft = 280 - text.length
+    {!this.props.authedUser &&
+      <Login />}
 
     return (
       <div>
+      {!this.props.authedUser &&
+      <Login />}
+      {this.props.authedUser &&
+      <Fragment>
         <h3 className='center'>Create a New Question</h3>
         <h4 style={{paddingLeft:'20%'}}>Would you rather...</h4>
         <form className='new-tweet' onSubmit={this.handleSubmit}>
@@ -75,9 +81,19 @@ class NewTweet extends Component {
               Submit
           </button>
         </form>
+        </Fragment>}
       </div>
     )
   }
 }
 
-export default connect()(NewTweet)
+function mapStateToProps ({ tweets, users, authedUser }) {
+  return {
+    authedUser,
+    users,
+    tweetIds: Object.keys(tweets)
+      .sort((a,b) => tweets[b].timestamp - tweets[a].timestamp)
+  }
+}
+
+export default connect(mapStateToProps)(NewTweet)

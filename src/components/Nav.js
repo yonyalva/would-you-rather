@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
 
@@ -22,12 +22,15 @@ class Nav extends Component {
               Leader Board
             </NavLink>
           </li>
+          {this.props.authedUser &&
+          <Fragment>
           <li>
             <label>Hello {this.props.authedUser}!</label>
           </li>
           <li>
-            <button>Sign Out</button>
+          <button>Sign Out</button>
           </li>
+          </Fragment>}
         </ul>
       </nav>
     )
