@@ -2,10 +2,15 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import Tweet from './Tweet'
 import { NavLink } from 'react-router-dom'
+import Login from './Login'
 
 class Answered extends Component {
   render() {
     return (
+      <Fragment>
+        {!this.props.authedUser &&
+        <Login />}
+      {this.props.authedUser &&
       <Fragment>
         <h3 className='center' >Would you rather</h3>
         <nav className='nav'>
@@ -29,6 +34,7 @@ class Answered extends Component {
             </li>
           ))}
         </ul>
+       </Fragment>}
        </Fragment>
     )
   }

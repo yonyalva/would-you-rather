@@ -64,8 +64,6 @@ class Tweet extends Component {
                 : <TiHeartOutline className='tweet-icon'/>} */}
                 View Poll
             </button>
-            peo
-            {authedUser}
             {/* Object.keys(this.props.users[this.props.authedUser].answers */}
             {/* <span>{likes !== 0 && likes}</span>
           </div> */}
