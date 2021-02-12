@@ -4,7 +4,7 @@ import { handleAddTweet } from '../actions/tweets'
 import { Redirect } from 'react-router-dom'
 import Login from './Login'
 
-class NewTweet extends Component {
+class Add extends Component {
   state = {
     optionOneText: '',
     optionTwoText: '',
@@ -92,4 +92,4 @@ function mapStateToProps ({ authedUser }) {
   }
 }
 
-export default connect(mapStateToProps)(NewTweet)
+export default connect(mapStateToProps)(Add)

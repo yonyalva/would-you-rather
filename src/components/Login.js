@@ -2,13 +2,15 @@ import React, { Component } from "react";
 import { connect } from 'react-redux'
 import { _getUsers } from '../utils/_DATA'
 import {setAuthedUser} from '../actions/authedUser.js'
-import { Redirect } from 'react-router-dom'
+import { NavLink, Redirect } from 'react-router-dom'
+import Dashboard from './Home'
 
 class Login extends Component {
   // constructor(props) {
   //   super(props);
   state = {
     loggeduser: "",
+    // toHome: true,
   }
 
     // this.handleChange = this.handleChange.bind(this);
@@ -26,6 +28,9 @@ class Login extends Component {
   }
 
   render() {
+    // if (this.state.toHome === true) {
+    //   return <Redirect to='/' />
+    // }
     return (
       <div className='center'>
           <h3 >Welcome to Would you Rather...!</h3>
@@ -33,7 +38,7 @@ class Login extends Component {
           <select onChange={(e) => {this.handleChange(e)}} defaultValue='1'>
             <option value='1' disabled >Select User</option>
             {this.props.usersIds.map((user) => (
-              <option value={user}>{user}</option>
+              <NavLink to='/' ><option value={user}>{user}</option></NavLink>
             ))}
           </select>
           {/* <br></br><br></br>

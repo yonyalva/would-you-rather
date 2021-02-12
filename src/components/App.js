@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 import Dashboard from './Home'
 import LoadingBar from 'react-redux-loading'
-import NewTweet from './NewTweet'
+import Add from './Add'
 import TweetPage from './TweetPage'
 import Nav from './Nav'
 import Answered from './Answered'
@@ -30,7 +30,7 @@ class App extends Component {
                   <Route path='/Answered'  component={Answered} />
                   <Route path='/Unanswered'  component={Unanswered} />
                   <Route path='/tweet/:id' component={TweetPage} />
-                  <Route path='/new' component={NewTweet} />
+                  <Route path='/add' component={Add} />
                   <Route component={Dashboard} />
                 </Switch>
                 </div>}

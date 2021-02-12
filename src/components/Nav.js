@@ -23,7 +23,7 @@ class Nav extends Component {
             </NavLink>
           </li>
           <li>
-            <NavLink to='/new'  activeClassName='active'>
+            <NavLink to='/add'  activeClassName='active'>
               New Question
             </NavLink>
           </li>
@@ -38,7 +38,7 @@ class Nav extends Component {
             <label>Hello {this.props.authedUser}!</label>
           </li>
           <li>
-            <button onClick={() => {this.signOut()}}>Sign Out</button>
+          <NavLink to='/' onClick={() => {this.signOut()}}>Sign Out</NavLink>
           </li>
           </Fragment>}
         </ul>
