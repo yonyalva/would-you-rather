@@ -2,35 +2,22 @@ import React, { Component } from "react";
 import { connect } from 'react-redux'
 import { _getUsers } from '../utils/_DATA'
 import {setAuthedUser} from '../actions/authedUser.js'
-import { NavLink, Redirect } from 'react-router-dom'
-import Dashboard from './Home'
+import { withRouter } from "react-router-dom";
 
 class Login extends Component {
-  // constructor(props) {
-  //   super(props);
   state = {
     loggeduser: "",
-    // toHome: true,
   }
 
-    // this.handleChange = this.handleChange.bind(this);
-  // }
 
-  // signIn = () => {
-  //   const { dispatch } = this.props
-  //   dispatch(setAuthedUser(this.state.loggeduser))
-  // }
-
-  handleChange = (e) => {
+  handleChange = (e, props) => {
     this.state.loggeduser = e.target.value
     const { dispatch } = this.props
     dispatch(setAuthedUser(this.state.loggeduser))
+    this.props.history.replace('/')
   }
 
   render() {
-    // if (this.state.toHome === true) {
-    //   return <Redirect to='/' />
-    // }
     return (
       <div className='center'>
           <h3 >Welcome to Would you Rather...!</h3>
@@ -38,11 +25,9 @@ class Login extends Component {
           <select onChange={(e) => {this.handleChange(e)}} defaultValue='1'>
             <option value='1' disabled >Select User</option>
             {this.props.usersIds.map((user) => (
-              <NavLink to='/' ><option value={user}>{user}</option></NavLink>
+            <option value={user}>{user}</option>
             ))}
           </select>
-          {/* <br></br><br></br>
-          <button  onClick={() => {this.signIn()}}>Sign In</button> */}
       </div>
     );
   }
@@ -55,4 +40,4 @@ function mapStateToProps ({ users, authedUser }) {
   }
 }
 
-export default connect(mapStateToProps)(Login)
+export default connect(mapStateToProps)(withRouter(Login))

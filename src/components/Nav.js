@@ -1,16 +1,12 @@
 import React, { Component, Fragment } from 'react'
-import { NavLink, Redirect } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
 import {setAuthedUser} from '../actions/authedUser.js'
 
 class Nav extends Component {
   signOut = () =>{
-    // e.preventDefault()
     const { dispatch } = this.props
-
     dispatch(setAuthedUser(""))
-    // return    <Redirect  to="/" />
-
   }
 
   render() {

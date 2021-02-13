@@ -10,14 +10,14 @@ class TweetPage extends Component {
       <div>
         <Tweet id={id} />
         <Add id={id} />
-        {replies.length !== 0 && <h3 className='center'>Replies</h3>}
+        {/* {replies.length !== 0 && <h3 className='center'>Replies</h3>}
         <ul>
           {replies.map((replyId) => (
             <li key={replyId}>
               <Tweet id={replyId}/>
             </li>
           ))}
-        </ul>
+        </ul> */}
       </div>
     )
   }
@@ -27,10 +27,10 @@ function mapStateToProps ({ authedUser, tweets, users }, props) {
   const { id } = props.match.params
 
   return {
-    id,
-    replies: !tweets[id]
-      ? []
-      : tweets[id].replies.sort((a,b,) => tweets[b].timestamp - tweets[a].timestamp)
+    id
+    // replies: !tweets[id]
+    //   ? []
+    //   : tweets[id].replies.sort((a,b,) => tweets[b].timestamp - tweets[a].timestamp)
   }
 }
 

@@ -1,14 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { formatTweet } from '../utils/helpers'
-// import TiArrowBackOutline from 'react-icons/lib/ti/arrow-back-outline'
-// import TiHeartOutline from 'react-icons/lib/ti/heart-outline'
-// import TiHeartFullOutline from 'react-icons/lib/ti/heart-full-outline'
 import { handleToggleTweet } from '../actions/tweets'
 import { Link, withRouter } from 'react-router-dom'
 import { _getQuestions, _getUsers } from '../utils/_DATA'
 
-class Tweet extends Component {
+class Upoll extends Component {
   handleLike = (e) => {
     e.preventDefault()
 
@@ -32,11 +29,10 @@ class Tweet extends Component {
     }
 
     const {
-      name, avatar, timestamp, text, optionOne, authedUser, hasLiked, likes, replies, id, parent
+      name, avatar, timestamp, text, optionOne, optionTwo, authedUser, hasLiked, likes, replies, id, parent
     } = tweet
 
     return (
-      // <Link to={`/tweet/${id}`} className='tweet'>
       <div className='tweet'>
         <img
           src={avatar}
@@ -46,31 +42,33 @@ class Tweet extends Component {
         <div className='tweet-info'>
           <div>
             <span>{name}</span>
-            {/* <div>{formatDate(timestamp)}</div> */}
-            {/* {parent && (
-              <button className='replying-to' onClick={(e) => this.toParent(e, parent.id)}>
-                Replying to @{parent.author}
-              </button>
-            )} */}
-            <p>...{optionOne.text.slice(0, 15)}...</p>
+            <h3>Would you Rather...</h3>
+            {/* <p>{optionOne.text}</p>
+            <p>{optionTwo.text}</p> */}
             {/* <p>...{Object.keys(answers)}...</p> */}
             {/* <p>{Object.keys(this.props.users)}</p> */}
           </div>
-          {/* <div className='tweet-icons'>
-            <TiArrowBackOutline className='tweet-icon' />
-            <span>{replies !== 0 && replies}</span> */}
-            <Link to={`/Upoll/${id}`}><button className='btn-question'>
-              {/* {hasLiked === true
-                ? <TiHeartFullOutline color='#e0245e' className='tweet-icon' />
-                : <TiHeartOutline className='tweet-icon'/>} */}
-                View Poll
+          <form onSubmit={this.formSubmit}>
+            <div className="radio">
+              <label>
+                <input type="radio" value="Male" name = "poll"
+                  // checked={this.state.selectedOption === "Male"}
+                  onChange={this.onValueChange}/> {optionOne.text}
+              </label>
+            </div>
+            <div className="radio">
+              <label>
+                <input type="radio" value="Female" name = "poll"
+                  // checked={this.state.selectedOption === "Female"}
+                  onChange={this.onValueChange}/> {optionTwo.text}
+              </label>
+            </div>
+            <br></br>
+            <button style={{marginLeft: '2em'}} className="btn-question" type="submit">
+              Submit
             </button>
-            </Link>
-            {/* Object.keys(this.props.users[this.props.authedUser].answers */}
-            {/* <span>{likes !== 0 && likes}</span>
-          </div> */}
+          </form>
         </div>
-      {/* </Link> */}
       </div>
     )
   }
@@ -88,4 +86,4 @@ function mapStateToProps ({authedUser, users, tweets}, { id }) {
   }
 }
 
-export default withRouter(connect(mapStateToProps)(Tweet))
+export default withRouter(connect(mapStateToProps)(Upoll))

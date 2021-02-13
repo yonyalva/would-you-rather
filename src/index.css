@@ -39,6 +39,20 @@ a {
   border-width: 2px;
 }
 
+.btn-question {
+  text-transform: uppercase;
+  /* margin: 35px auto; */
+  padding: .5em;
+  border: 1px solid rgba(0,0,0,.29);
+  /* cursor: pointer; */
+  /* background: #fff; */
+  background: lightseagreen;
+  /* font-size: 16px; */
+  /* width: 250px; */
+  /* position: relative; */
+  color:white;
+}
+
 .center {
   text-align: center;
   color: royalblue;
