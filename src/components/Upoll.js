@@ -6,17 +6,23 @@ import { Link, withRouter } from 'react-router-dom'
 import { _getQuestions, _getUsers } from '../utils/_DATA'
 
 class Upoll extends Component {
-  handleLike = (e) => {
-    e.preventDefault()
+  state = {
+    name: "pollgroup",
+    optionOneText: '',
+    optionTwoText: '',
+  }
 
-    const { dispatch, tweet, authedUser, user } = this.props
-
-    dispatch(handleToggleTweet({
-      id: tweet.id,
-      hasLiked: tweet.hasLiked,
-      authedUser
+  onValueChange = (e) => {
+    this.setState(() => ({
+      selectedOption: e.target.value
     }))
   }
+
+  formSubmit = (e) => {
+    e.preventDefault();
+    console.log(this.state.selectedOption)
+  }
+
   toParent = (e, id) => {
     e.preventDefault()
     this.props.history.push(`/tweet/${id}`)
@@ -51,20 +57,22 @@ class Upoll extends Component {
           <form onSubmit={this.formSubmit}>
             <div className="radio">
               <label>
-                <input type="radio" value="Male" name = "poll"
-                  // checked={this.state.selectedOption === "Male"}
+                <input type="radio" value="Male"
+                  checked={this.state.selectedOption === "Male"}
                   onChange={this.onValueChange}/> {optionOne.text}
               </label>
             </div>
             <div className="radio">
               <label>
-                <input type="radio" value="Female" name = "poll"
-                  // checked={this.state.selectedOption === "Female"}
+                <input type="radio" value="Female"
+                  checked={this.state.selectedOption === "Female"}
                   onChange={this.onValueChange}/> {optionTwo.text}
               </label>
+              <div>
+              Selected option is : {this.state.selectedOption}
             </div>
-            <br></br>
-            <button style={{marginLeft: '2em'}} className="btn-question" type="submit">
+            </div>
+            <button className="btn" disabled={!this.state.selectedOption}>
               Submit
             </button>
           </form>

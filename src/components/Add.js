@@ -47,8 +47,6 @@ class Add extends Component {
       return <Redirect to='/' />
     }
 
-    // const tweetLeft = 280 - text.length
-
     return (
       <div>
       {!this.props.authedUser &&
@@ -73,7 +71,7 @@ class Add extends Component {
               {tweetLeft}
             </div>
           )} */}
-          <button className='btn' type='submit' disabled={optionOneText === '' || optionTwoText === ''}>
+          <button className='btn' disabled={optionOneText === '' || optionTwoText === ''}>
               Submit
           </button>
         </form>
