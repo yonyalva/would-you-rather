@@ -14,7 +14,10 @@ class Login extends Component {
     this.state.loggeduser = e.target.value
     const { dispatch } = this.props
     dispatch(setAuthedUser(this.state.loggeduser))
-    this.props.history.replace('/')
+    // commenting the below out as the rubic is confusing on whether
+    // once the user is logged, is supposed to be redirected to the home (#4) 
+    // or stay on the same page (#5) where the request to login originated from
+    // this.props.history.replace('/')  
   }
 
   render() {

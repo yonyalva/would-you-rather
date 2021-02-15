@@ -15,7 +15,11 @@ export function getInitialData () {
   }))
 }
 
-export function saveLikeToggle (info) {
+// export function saveLikeToggle (info) {
+//   return _saveQuestionAnswer(info)
+// }
+
+export function saveQanswer (info) {
   return _saveQuestionAnswer(info)
 }
 

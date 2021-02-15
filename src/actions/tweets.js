@@ -1,8 +1,8 @@
-import { saveLikeToggle, saveTweet } from '../utils/api'
+import { saveTweet, saveQanswer } from '../utils/api'
 import { showLoading, hideLoading } from 'react-redux-loading'
 
 export const RECEIVE_TWEETS = 'RECEIVE_TWEETS'
-export const TOGGLE_TWEET = 'TOGGLE_TWEET'
+export const RECEIVE_POLL = 'RECEIVE_POLL'
 export const ADD_TWEET = 'ADD_TWEET'
 
 function addTweet (tweet) {
@@ -51,24 +51,47 @@ export function receiveTweets (tweets) {
   }
 }
 
-function toggleTweet ({ id, authedUser, hasLiked }) {
+// function toggleTweet ({ id, authedUser, hasLiked }) {
+//   return {
+//     type: TOGGLE_TWEET,
+//     id,
+//     authedUser,
+//     hasLiked
+//   }
+// }
+
+function pollAnswer ({ authedUser, qid, answer }) {
   return {
-    type: TOGGLE_TWEET,
-    id,
+    type: RECEIVE_POLL,
     authedUser,
-    hasLiked
+    qid,
+    answer
   }
 }
 
-export function handleToggleTweet (info) {
-  return (dispatch) => {
-    dispatch(toggleTweet(info))
+// export function handleToggleTweet (info) {
+//   return (dispatch) => {
+//     dispatch(toggleTweet(info))
 
-    return saveLikeToggle(info)
+//     return saveLikeToggle(info)
+//       .catch((e) => {
+//         console.warn('Error in handleToggleTweet: ', e)
+//         dispatch(toggleTweet(info))
+//         alert('The was an error liking the tweet. Try again.')
+//       })
+//   }
+// }
+
+export function handlePoll (info) {
+  return (dispatch) => {
+    dispatch(pollAnswer(info))
+    // console.log('inside action')
+
+    return saveQanswer(info)
       .catch((e) => {
-        console.warn('Error in handleToggleTweet: ', e)
-        dispatch(toggleTweet(info))
-        alert('The was an error liking the tweet. Try again.')
+        console.warn('Error in handlePoll: ', e)
+        dispatch(pollAnswer(info))
+        alert('The was an error submitting this answer. Try again.')
       })
   }
 }

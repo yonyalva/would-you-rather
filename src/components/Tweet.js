@@ -4,22 +4,22 @@ import { formatTweet } from '../utils/helpers'
 // import TiArrowBackOutline from 'react-icons/lib/ti/arrow-back-outline'
 // import TiHeartOutline from 'react-icons/lib/ti/heart-outline'
 // import TiHeartFullOutline from 'react-icons/lib/ti/heart-full-outline'
-import { handleToggleTweet } from '../actions/tweets'
+// import { handleToggleTweet } from '../actions/tweets'
 import { Link, withRouter } from 'react-router-dom'
 import { _getQuestions, _getUsers } from '../utils/_DATA'
 
 class Tweet extends Component {
-  handleLike = (e) => {
-    e.preventDefault()
+  // handleLike = (e) => {
+  //   e.preventDefault()
 
-    const { dispatch, tweet, authedUser, user } = this.props
+  //   const { dispatch, tweet, authedUser, user } = this.props
 
-    dispatch(handleToggleTweet({
-      id: tweet.id,
-      hasLiked: tweet.hasLiked,
-      authedUser
-    }))
-  }
+  //   dispatch(handleToggleTweet({
+  //     id: tweet.id,
+  //     hasLiked: tweet.hasLiked,
+  //     authedUser
+  //   }))
+  // }
   toParent = (e, id) => {
     e.preventDefault()
     this.props.history.push(`/tweet/${id}`)
@@ -66,7 +66,7 @@ class Tweet extends Component {
                 View Poll
             </button>
             </Link>
-            {/* Object.keys(this.props.users[this.props.authedUser].answers */}
+            {/* {Object.keys(this.props.users[this.props.authedUser].answers} */}
             {/* <span>{likes !== 0 && likes}</span>
           </div> */}
         </div>
@@ -82,6 +82,7 @@ function mapStateToProps ({authedUser, users, tweets}, { id }) {
 
   return {
     authedUser,
+    users,
     tweet: tweet
       ? formatTweet(tweet, users[tweet.author], authedUser, parentTweet )
       : null

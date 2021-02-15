@@ -35,8 +35,8 @@ class Add extends Component {
     dispatch(handleAddTweet(optionOneText, optionTwoText))
 
     this.setState(() => ({
-      optionOneText: '',
-      optionTwoText: '',
+      // optionOneText: '',
+      // optionTwoText: '',
       toHome: id ? false : true,
     }))
   }
