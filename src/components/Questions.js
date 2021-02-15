@@ -5,7 +5,7 @@ import { handlePoll } from '../actions/tweets'
 import { withRouter, Redirect } from 'react-router-dom'
 import { _getQuestions, _getUsers } from '../utils/_DATA'
 
-class Upoll extends Component {
+class Questions extends Component {
 
   state = {
     name: "pollgroup",
@@ -92,7 +92,7 @@ class Upoll extends Component {
         <img src={avatar} alt={`Avatar of ${name}`} className='avatar'/>
         <div className='tweet-info'>
           <div>
-            <span>{name}</span>
+            <span>{name} asks:</span>
             <h3>Would you Rather...</h3>
           </div>
           <form onSubmit={this.formSubmit}>
@@ -137,4 +137,4 @@ function mapStateToProps ({authedUser, users, tweets}, { id }) {
   }
 }
 
-export default withRouter(connect(mapStateToProps)(Upoll))
+export default withRouter(connect(mapStateToProps)(Questions))

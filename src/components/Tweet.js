@@ -59,7 +59,7 @@ class Tweet extends Component {
           {/* <div className='tweet-icons'>
             <TiArrowBackOutline className='tweet-icon' />
             <span>{replies !== 0 && replies}</span> */}
-            <Link to={`/Upoll/${id}`}><button className='btn-question'>
+            <Link to={`/questions/${id}`}><button className='btn-question'>
               {/* {hasLiked === true
                 ? <TiHeartFullOutline color='#e0245e' className='tweet-icon' />
                 : <TiHeartOutline className='tweet-icon'/>} */}
@@ -83,6 +83,8 @@ function mapStateToProps ({authedUser, users, tweets}, { id }) {
   return {
     authedUser,
     users,
+    tweetIds: Object.keys(tweets)
+    .sort((a,b) => tweets[b].timestamp - tweets[a].timestamp),
     tweet: tweet
       ? formatTweet(tweet, users[tweet.author], authedUser, parentTweet )
       : null

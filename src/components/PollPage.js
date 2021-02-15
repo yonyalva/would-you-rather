@@ -3,9 +3,9 @@ import { connect } from 'react-redux'
 import Tweet from './Tweet'
 import Add from './Add'
 import Login from './Login'
-import Upoll from './Upoll'
+import Qustions from './Questions'
 
-class Unansweredpoll extends Component {
+class PollPage extends Component {
   render() {
     const { id, replies } = this.props
     return (
@@ -14,7 +14,7 @@ class Unansweredpoll extends Component {
         <Login />}
         {this.props.authedUser &&
         <Fragment>     
-        <Upoll id={id} />
+        <Qustions id={id} />
         {/* <Add id={id} /> */}
         {/* {replies.length !== 0 && <h3 className='center'>Replies</h3>}
         <ul>
@@ -42,4 +42,4 @@ function mapStateToProps ({ authedUser, tweets, users }, props) {
   }
 }
 
-export default connect(mapStateToProps)(Unansweredpoll)
+export default connect(mapStateToProps)(PollPage)
