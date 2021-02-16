@@ -4,19 +4,20 @@ import { formatTweet } from '../utils/helpers'
 import { handlePoll } from '../actions/tweets'
 import { withRouter, Redirect } from 'react-router-dom'
 import { _getQuestions, _getUsers } from '../utils/_DATA'
+import ProgressBar from "@ramonak/react-progress-bar";
 
 class Questions extends Component {
 
-  state = {
-    name: "pollgroup",
-    toHome: false,
-  }
+  state = {selectedOption: ''}
 
   onValueChange = (e) => {
     this.setState(() => ({
       selectedOption: e.target.value
     }))
   }
+  Example = () => {
+    return <ProgressBar completed={60} />;
+  };
 
   // formSubmit = (e) => {
   //   e.preventDefault();
@@ -61,21 +62,22 @@ class Questions extends Component {
     const { dispatch, tweet, authedUser, qid } = this.props
 
     dispatch(handlePoll({ qid: tweet.id, authedUser, answer}))
-    this.setState(() => ({
-      toHome: qid ? false : true,
-    }))
+    // this.setState(() => ({
+    //   toHome: qid ? false : true,
+    // }))
     }
 
   toParent = (e, id) => {
     e.preventDefault()
     this.props.history.push(`/tweet/${id}`)
   }
-  render() {
-    const { toHome } = this.state
 
-    if (toHome === true) {
-      return <Redirect to='/' />
-    }
+  render() {
+    // const { toHome } = this.state
+
+    // if (toHome === true) {
+    //   return <Redirect to='/' />
+    // }
 
     const { tweet } = this.props
 
@@ -86,11 +88,12 @@ class Questions extends Component {
     const {
       name, avatar, timestamp, text, optionOne, optionTwo, authedUser, hasLiked, likes, replies, id, parent
     } = tweet
-
     return (
       <div className='tweet'>
         <img src={avatar} alt={`Avatar of ${name}`} className='avatar'/>
         <div className='tweet-info'>
+        {!(optionOne.votes.includes(authedUser) || optionTwo.votes.includes(authedUser)) &&
+          <div>
           <div>
             <span>{name} asks:</span>
             <h3>Would you Rather...</h3>
@@ -112,12 +115,37 @@ class Questions extends Component {
                   onChange={this.onValueChange}/> {optionTwo.text}
                   <span className="checkmark"></span>              
               </label>
-              {/* <div style={{marginTop:'1em'}}>Selected option is : {this.state.selectedOption}</div> */}
             </div>
             <button className="btn" disabled={!this.state.selectedOption}>
               Submit
             </button>
           </form>
+          </div>}
+          {/* asked by section */}
+          {(optionOne.votes.includes(authedUser) || optionTwo.votes.includes(authedUser)) &&
+          <div className='tweet-info'>
+          <span>Asked by {name}</span>
+          <h3>Results:</h3>
+          <div className='pollwi'>
+         <span>Would you rather {optionOne.text}?
+         {optionOne.votes.includes(authedUser) &&
+          <img src="../images/yourvote.png" className='yourvote'></img>}</span><br></br><br></br>
+          <ProgressBar completed={Math.round(optionOne.votes.length / [optionOne.votes.length + optionTwo.votes.length] * 100)} bgcolor="green" baseBgColor="red"/>
+          <div style={{marginTop:'.5em', textAlign:'center'}}>
+          {optionOne.votes.length} out of {optionOne.votes.length + optionTwo.votes.length} votes
+          <br></br>
+          </div>
+          </div>
+          <div className='pollwi' style={{marginTop: '.5em'}}>
+          <span>Would you rather {optionTwo.text}?
+          {optionTwo.votes.includes(authedUser) &&
+          <img src="../images/yourvote.png" className='yourvote'></img>}</span><br></br><br></br>
+          <ProgressBar completed={Math.round(optionTwo.votes.length / [optionOne.votes.length + optionTwo.votes.length] * 100)} bgcolor="green" baseBgColor="red"/>
+          <div style={{marginTop:'.5em', textAlign:'center'}}>
+          {optionTwo.votes.length} out of {optionOne.votes.length + optionTwo.votes.length} votes
+          </div>
+          </div>
+        </div>}
         </div>
       </div>
     )
