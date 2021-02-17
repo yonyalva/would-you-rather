@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux'
-import { _getUsers } from '../utils/_DATA'
 import {setAuthedUser} from '../actions/authedUser.js'
 import { withRouter } from "react-router-dom";
 

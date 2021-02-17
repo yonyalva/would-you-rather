@@ -97,6 +97,7 @@ li {
   float: right;
   position: relative;
   bottom: 1.5em; left: 1.5em;
+  border: 1px solid #333;
 }
 
 .tweet {

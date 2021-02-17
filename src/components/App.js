@@ -5,10 +5,8 @@ import { handleInitialData } from '../actions/shared'
 import Dashboard from './Home'
 import LoadingBar from 'react-redux-loading'
 import Add from './Add'
-// import TweetPage from './TweetPage'
 import Nav from './Nav'
 import Answered from './Answered'
-import Unanswered from './Unanswered'
 import NotFound from './404'
 import PollPage from './PollPage'
 
@@ -30,7 +28,7 @@ class App extends Component {
                 <Switch>
                   <Route path='/' exact component={Dashboard} />
                   <Route path='/Answered'  component={Answered} />
-                  <Route path='/Unanswered'  component={Unanswered} />
+                  {/* <Route path='/Unanswered'  component={Unanswered} /> */}
                   <Route path='/questions/:id' component={PollPage} />
                   <Route path='/add' component={Add} />
                   <Route component={NotFound} />

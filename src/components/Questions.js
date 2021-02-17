@@ -127,9 +127,10 @@ class Questions extends Component {
           <span>Asked by {name}</span>
           <h3>Results:</h3>
           <div className='pollwi'>
-         <span>Would you rather {optionOne.text}?
-         {optionOne.votes.includes(authedUser) &&
-          <img src="../images/yourvote.png" className='yourvote'></img>}</span><br></br><br></br>
+         <span>
+          {optionOne.votes.includes(authedUser) &&
+          <img src="../images/yourvote.png" className='yourvote'></img>}
+           Would you rather {optionOne.text}?</span><br></br><br></br>
           <ProgressBar completed={Math.round(optionOne.votes.length / [optionOne.votes.length + optionTwo.votes.length] * 100)} bgcolor="green" baseBgColor="red"/>
           <div style={{marginTop:'.5em', textAlign:'center'}}>
           {optionOne.votes.length} out of {optionOne.votes.length + optionTwo.votes.length} votes
@@ -137,9 +138,10 @@ class Questions extends Component {
           </div>
           </div>
           <div className='pollwi' style={{marginTop: '.5em'}}>
-          <span>Would you rather {optionTwo.text}?
+          <span>
           {optionTwo.votes.includes(authedUser) &&
-          <img src="../images/yourvote.png" className='yourvote'></img>}</span><br></br><br></br>
+          <img src="../images/yourvote.png" className='yourvote'></img>}
+          Would you rather {optionTwo.text}?</span><br></br><br></br>
           <ProgressBar completed={Math.round(optionTwo.votes.length / [optionOne.votes.length + optionTwo.votes.length] * 100)} bgcolor="green" baseBgColor="red"/>
           <div style={{marginTop:'.5em', textAlign:'center'}}>
           {optionTwo.votes.length} out of {optionOne.votes.length + optionTwo.votes.length} votes

@@ -27,3 +27,17 @@ export function formatTweet (tweet, author, authedUser, parentTweet ) {
     // }
   }
 }
+
+export function formatUser (user, uname, authedUser) {
+  const [ answers, questions, id  ] = user
+  const name = uname
+
+  return {
+    name,
+    id,
+    // avatar: avatarURL,
+    answers,
+    questions,
+    authedUser
+  }
+}
