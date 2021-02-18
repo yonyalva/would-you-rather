@@ -26,8 +26,8 @@ class Login extends Component {
           <h4 style={{color:'red'}}>Please select your user to sign in</h4>
           <select onChange={(e) => {this.handleChange(e)}} defaultValue='1'>
             <option value='1' disabled >Select User</option>
-            {this.props.usersIds.map((user) => (
-            <option value={user}>{user}</option>
+            {this.props.usersList.map((user, id) => ( 
+            <option value={user.id}>{user.name}</option>
             ))}
           </select>
       </div>
@@ -35,11 +35,17 @@ class Login extends Component {
   }
 }
 
+// function mapStateToProps ({ users, authedUser }) {
+//   return {
+//     users,
+//     authedUser,
+//     usersIds: Object.values(users)
+//   }
+// }
+
 function mapStateToProps ({ users, authedUser }) {
-  return {
-    authedUser,
-    usersIds: Object.keys(users)
-  }
+  const usersList = Object.values(users)
+  return { usersList, authedUser };
 }
 
 export default connect(mapStateToProps)(withRouter(Login))

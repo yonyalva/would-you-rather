@@ -28,7 +28,7 @@ class Tweet extends Component {
     const { tweet } = this.props
 
     if (tweet === null) {
-      return <p>This Tweet doesn't existd</p>
+      return <p>This Tweet doesn't exist</p>
     }
 
     const {

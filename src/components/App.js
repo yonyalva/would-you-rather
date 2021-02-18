@@ -9,6 +9,7 @@ import Nav from './Nav'
 import Answered from './Answered'
 import NotFound from './404'
 import PollPage from './PollPage'
+import Leaderboard from './Leaderboard'
 
 class App extends Component {
   componentDidMount() {
@@ -31,6 +32,8 @@ class App extends Component {
                   {/* <Route path='/Unanswered'  component={Unanswered} /> */}
                   <Route path='/questions/:id' component={PollPage} />
                   <Route path='/add' component={Add} />
+                  <Route path='/leaderboard' component={Leaderboard} />
+
                   <Route component={NotFound} />
                 </Switch>
                 </div>}

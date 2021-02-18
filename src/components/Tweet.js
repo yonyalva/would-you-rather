@@ -78,15 +78,18 @@ class Tweet extends Component {
 
 function mapStateToProps ({authedUser, users, tweets}, { id }) {
   const tweet = tweets[id]
-  const parentTweet = tweet ? tweets[tweet.replyingTo] : null
+  // const parentTweet = tweet ? tweets[tweet.replyingTo] : null
 
   return {
     authedUser,
     users,
     tweetIds: Object.keys(tweets)
     .sort((a,b) => tweets[b].timestamp - tweets[a].timestamp),
+    // tweet: tweet
+    //   ? formatTweet(tweet, users[tweet.author], authedUser, parentTweet )
+    //   : null
     tweet: tweet
-      ? formatTweet(tweet, users[tweet.author], authedUser, parentTweet )
+      ? formatTweet(tweet, users[tweet.author], authedUser )
       : null
   }
 }

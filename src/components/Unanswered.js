@@ -28,7 +28,9 @@ class Unanswered extends Component {
         </ul>
         </nav>
         <ul className='dashboard-list'>
-          {this.props.tweetIds.filter((tweetIds) => !Object.keys(this.props.users[this.props.authedUser].answers).includes(tweetIds)).map((id) => (
+          {this.props.tweetIds.filter((tweetIds) => 
+          !Object.keys(this.props.users[this.props.authedUser].answers)
+            .includes(tweetIds)).map((id) => (
             <li key={id}>
               <Tweet id={id}/>
             </li>

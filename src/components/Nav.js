@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
 import {setAuthedUser} from '../actions/authedUser.js'
+import {Login} from './Login'
 
 class Nav extends Component {
   signOut = () =>{
@@ -24,15 +25,16 @@ class Nav extends Component {
             </NavLink>
           </li>
           <li>
-            <NavLink to='/new1' activeClassName='active'>
+            <NavLink to='/leaderboard' activeClassName='active'>
               Leader Board
             </NavLink>
           </li>
           {this.props.authedUser &&
           <Fragment>
+          {this.props.username.map( id => (
           <li>
-            <label>Hello {this.props.authedUser}!</label>
-          </li>
+            <label>Hello {id.name}!</label>
+          </li>))}
           <li>
           <NavLink to='/' onClick={() => {this.signOut()}}>Sign Out</NavLink>
           </li>
@@ -43,10 +45,10 @@ class Nav extends Component {
   }
 }
 
-function mapStateToProps ({ authedUser }) {
-  return {
-    authedUser
-  }
+function mapStateToProps ({ users, authedUser, name }, {id}) {
+  const usersList = Object.values(users)
+  const username = Object.values(users).filter((user) => user.id === authedUser)
+  return { usersList, authedUser, username }
 }
 
 export default connect(mapStateToProps)(Nav)
