@@ -82,7 +82,7 @@ class Questions extends Component {
     const { tweet } = this.props
 
     if (tweet === null) {
-      return <p>This Tweet doesn't existd</p>
+      return <Redirect to='/404' />
     }
 
     const {

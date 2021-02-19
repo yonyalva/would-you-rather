@@ -1,52 +1,65 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component, Fragment } from "react";
 import { connect } from 'react-redux'
-import Tweet from './Tweet'
-import { NavLink } from 'react-router-dom'
+import {setAuthedUser} from '../actions/authedUser.js'
+import { withRouter } from "react-router-dom";
 import Login from './Login'
 
-class Leaderboard extends Component {
+class leaderboard extends Component {
+  state = { loggeduser: "" }
+
+  handleChange = (e, props) => {
+    this.state.loggeduser = e.target.value
+    const { dispatch } = this.props
+    dispatch(setAuthedUser(this.state.loggeduser))
+    /*
+    commenting the below out as the rubic is confusing on whether
+    once the user is logged, is supposed to be redirected to the home page (#4) 
+    or stay on the same page (#5) where the request to login originated from.
+    Removing the comment below will redirect to the home page.
+    */
+    // this.props.history.replace('/')  
+  }
+
   render() {
     return (
-      <Fragment>
-        {!this.props.authedUser &&
-        <Login />}
-      {this.props.authedUser &&
-      <Fragment>
-        <h3 className='center' >Would you rather</h3>
-        <nav className='nav'>
-        <ul>
-            <li>
-            <NavLink to='/' exact activeClassName='active'>
-                Unanswered
-            </NavLink>
-            </li>
-            <li>
-            <NavLink to='/Answered'  activeClassName='active'>
-                Answered
-            </NavLink>
-            </li>
-        </ul>
-        </nav>
-        <ul className='dashboard-list'>
-          {this.props.tweetIds.filter((tweetIds) => !Object.keys(this.props.users[this.props.authedUser].answers).includes(tweetIds)).map((id) => (
-            <li key={id}>
-              <Tweet id={id}/>
-            </li>
-          ))}
-        </ul>
-       </Fragment>}
-       </Fragment>
-    )
+      <div>
+      {!this.props.authedUser &&
+      <Login />}
+        {this.props.authedUser &&
+        <Fragment>
+          <h4 className='center'>Leader Board</h4>
+            {this.props.usersList.sort((a, b) => Object.values(b.answers).length + b.questions.length - 
+            Object.values(a.answers).length + b.questions.length).map((user, id) => ( 
+            <div className='tweet pollwi' style={{marginBottom: '.5em'}}>
+            <img src={user.avatarURL} alt={`Avatar of ${user.name}`} className='avatar'/>
+            <div className='tweet-info'>
+            <span>{user.name}<span style={{color:'green', marginLeft:'2em', fontSize:'1.5em'}}>
+              Score = {Object.values(user.answers).length + user.questions.length}</span></span>
+            <br></br><br></br>
+            <span>Answered questions = {user.questions.length}</span>
+            <br></br><br></br>
+            <span>Created questions = {Object.values(user.answers).length}</span>
+            <br></br>
+            </div>
+            </div>
+            ))}
+        </Fragment>}
+      </div>
+    );
   }
 }
 
-function mapStateToProps ({ tweets, users, authedUser }) {
-  return {
-    authedUser,
-    users,
-    tweetIds: Object.keys(tweets)
-      .sort((a,b) => tweets[b].timestamp - tweets[a].timestamp)
-  }
+// function mapStateToProps ({ users, authedUser }) {
+//   return {
+//     users,
+//     authedUser,
+//     usersIds: Object.values(users)
+//   }
+// }
+
+function mapStateToProps ({ users, authedUser }) {
+  const usersList = Object.values(users)
+  return { usersList, authedUser };
 }
 
-export default connect(mapStateToProps)(Leaderboard)
+export default connect(mapStateToProps)(withRouter(leaderboard))

@@ -2,7 +2,7 @@ let users = {
   sarahedo: {
     id: 'sarahedo',
     name: 'Sarah Edo',
-    avatarURL: 'https://tylermcginnis.com/would-you-rather/sarah.jpg',
+    avatarURL: 'https://hips.hearstapps.com/digitalspyuk.cdnds.net/16/41/1476281167-gamora-guardians-of-the-galaxy.jpg?crop=0.512xw:1.00xh;0.141xw,0&resize=768:*',
     answers: {
       "8xf0y6ziyjabvozdd253nd": 'optionOne',
       "6ni6ok3ym7mf1p33lnez": 'optionTwo',
@@ -14,7 +14,7 @@ let users = {
   tylermcginnis: {
     id: 'tylermcginnis',
     name: 'Tyler McGinnis',
-    avatarURL: 'https://tylermcginnis.com/would-you-rather/tyler.jpg',
+    avatarURL: '../images/rocket-racoon.PNG',
     answers: {
       "vthrdm985a262al8qx3do": 'optionOne',
       "xj352vofupe1dqz9emx13r": 'optionTwo',
@@ -24,7 +24,7 @@ let users = {
   johndoe: {
     id: 'johndoe',
     name: 'John Doe',
-    avatarURL: 'https://tylermcginnis.com/would-you-rather/dan.jpg',
+    avatarURL: 'https://a1cf74336522e87f135f-2f21ace9a6cf0052456644b80fa06d4f.ssl.cf2.rackcdn.com/images/characters_opt/p-guardians-of-the-galaxy-vin.jpg',
     answers: {
       "xj352vofupe1dqz9emx13r": 'optionOne',
       "vthrdm985a262al8qx3do": 'optionTwo',

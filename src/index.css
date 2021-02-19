@@ -87,7 +87,7 @@ li {
 
 .avatar {
   height: 50px;
-  border-radius: 25px;
+  border-radius: 50px;
   margin: 10px;
 }
 
@@ -122,11 +122,14 @@ li {
   margin-right: 5px;
 } */
 
-.tweet-info > div > span {
+/* .tweet-info > div > span {
   font-weight: bold;
   margin-right: 5px;
+} */
+span {
+  font-weight: bold;
+  /* margin-right: 5px; */
 }
-
 /* .tweet-info > div > span:nth-child(2) {
   color: #969696;
   font-size: 16px;
