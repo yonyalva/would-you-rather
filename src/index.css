@@ -100,7 +100,7 @@ li {
   border: 1px solid #333;
 }
 
-.tweet {
+.question {
   width: 100%;
   max-width: 590px;
   padding: 10px;
@@ -111,7 +111,7 @@ li {
   /* cursor: pointer; */
 }
 
-.tweet-info {
+.question-info {
   margin: 10px;
   /* display: flex;
   flex-direction: column; */
