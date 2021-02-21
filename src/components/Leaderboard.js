@@ -7,12 +7,17 @@ class leaderboard extends Component {
   render() {
     return (
       <div>
-        {!this.props.authedUser && <Login />}
-        {this.props.authedUser && (
+        {!this.props.authedUser ? (
+          <Login />
+        ) : (
           <Fragment>
             <h4 className="center">Leader Board</h4>
             {this.props.usersList.map((user, id) => (
-              <div key={user.id}className="question pollwi" style={{ marginBottom: ".5em" }}>
+              <div
+                key={user.id}
+                className="question pollwi"
+                style={{ marginBottom: ".5em" }}
+              >
                 <img
                   src={user.avatarURL}
                   alt={`Avatar of ${user.name}`}
@@ -35,12 +40,12 @@ class leaderboard extends Component {
                   </span>
                   <br></br>
                   <br></br>
-                  <span>Answered questions = {user.questions.length}</span>
-                  <br></br>
-                  <br></br>
                   <span>
-                    Created questions = {Object.values(user.answers).length}
+                    Answered questions = {Object.values(user.answers).length}
                   </span>
+                  <br></br>
+                  <br></br>
+                  <span>Created questions = {user.questions.length}</span>
                   <br></br>
                 </div>
               </div>
@@ -59,7 +64,7 @@ function mapStateToProps({ users, authedUser }) {
       (a, b) =>
         Object.values(b.answers).length +
         b.questions.length -
-        (Object.values(a.answers).length + b.questions.length)
+        (Object.values(a.answers).length + a.questions.length)
     ),
   };
 }

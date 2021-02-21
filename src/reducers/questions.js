@@ -18,11 +18,11 @@ export default function questions (state = {}, action) {
             }
           }
         }
-    case ADD_QUESTION :
-      return {
-        ...state,
-        [action.question.id]: {...action.question}
-      }
+      case ADD_QUESTION :
+        return {
+          ...state,
+          [action.question.id]: {...action.question}
+        }
     default :
       return state
   }

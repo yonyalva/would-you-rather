@@ -8,8 +8,9 @@ class Answered extends Component {
   render() {
     return (
       <Fragment>
-        {!this.props.authedUser && <Login />}
-        {this.props.authedUser && (
+        {!this.props.authedUser ? (
+          <Login />
+        ) : (
           <Fragment>
             <h3 className="center">Would you rather</h3>
             <nav className="nav">

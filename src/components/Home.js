@@ -5,12 +5,7 @@ import Login from "./Login";
 
 class Dashboard extends Component {
   render() {
-    return (
-      <div>
-        {!this.props.authedUser && <Login />}
-        {this.props.authedUser && <Unanswered />}
-      </div>
-    );
+    return <div>{this.props.authedUser ? <Unanswered /> : <Login />}</div>;
   }
 }
 
