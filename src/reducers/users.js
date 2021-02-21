@@ -1,5 +1,5 @@
 import { RECEIVE_USERS } from '../actions/users'
-import { RECEIVE_POLL } from '../actions/tweets'
+import { RECEIVE_POLL } from '../actions/questions'
 
 export default function users (state = {}, action) {
   switch(action.type) {

@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import { handleAddTweet } from "../actions/tweets";
+import { handleAddQuestion } from "../actions/questions";
 import { Redirect } from "react-router-dom";
 import Login from "./Login";
 
@@ -32,7 +32,7 @@ class Add extends Component {
     const { optionOneText, optionTwoText } = this.state;
     const { dispatch, id } = this.props;
 
-    dispatch(handleAddTweet(optionOneText, optionTwoText));
+    dispatch(handleAddQuestion(optionOneText, optionTwoText));
 
     this.setState(() => ({
       toHome: id ? false : true,
@@ -52,7 +52,7 @@ class Add extends Component {
           <Fragment>
             <h3 className="center">Create a New Question</h3>
             <h4 style={{ paddingLeft: "20%" }}>Would you rather...</h4>
-            <form className="new-tweet" onSubmit={this.handleSubmit}>
+            <form className="new-question" onSubmit={this.handleSubmit}>
               <input
                 type="text"
                 name="option1"

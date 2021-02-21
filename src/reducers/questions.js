@@ -1,11 +1,11 @@
-import { RECEIVE_TWEETS, RECEIVE_POLL, ADD_TWEET } from '../actions/tweets'
+import { RECEIVE_QUESTIONS, RECEIVE_POLL, ADD_QUESTION } from '../actions/questions'
 
-export default function tweets (state = {}, action) {
+export default function questions (state = {}, action) {
   switch(action.type) {
-    case RECEIVE_TWEETS :
+    case RECEIVE_QUESTIONS :
       return {
         ...state,
-        ...action.tweets
+        ...action.questions
       }
       case RECEIVE_POLL :
         return {
@@ -18,10 +18,10 @@ export default function tweets (state = {}, action) {
             }
           }
         }
-    case ADD_TWEET :
+    case ADD_QUESTION :
       return {
         ...state,
-        [action.tweet.id]: {...action.tweet}
+        [action.question.id]: {...action.question}
       }
     default :
       return state

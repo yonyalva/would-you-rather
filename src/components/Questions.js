@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { formatTweet } from "../utils/helpers";
-import { handlePoll } from "../actions/tweets";
+import { formatQuestion } from "../utils/helpers";
+import { handlePoll } from "../actions/questions";
 import { withRouter, Redirect } from "react-router-dom";
 import ProgressBar from "@ramonak/react-progress-bar";
 
@@ -17,19 +17,19 @@ class Questions extends Component {
   formSubmit = (e) => {
     e.preventDefault();
     const answer = this.state.selectedOption;
-    const { dispatch, tweet, authedUser } = this.props;
+    const { dispatch, question, authedUser } = this.props;
 
-    dispatch(handlePoll({ qid: tweet.id, authedUser, answer }));
+    dispatch(handlePoll({ qid: question.id, authedUser, answer }));
   };
 
   render() {
-    const { tweet } = this.props;
+    const { question } = this.props;
 
-    if (tweet === null) {
+    if (question === null) {
       return <Redirect to="/404" />;
     }
 
-    const { name, avatar, optionOne, optionTwo, authedUser } = tweet;
+    const { name, avatar, optionOne, optionTwo, authedUser } = question;
     return (
       <div className="question">
         <img src={avatar} alt={`Avatar of ${name}`} className="avatar" />
@@ -145,12 +145,12 @@ class Questions extends Component {
   }
 }
 
-function mapStateToProps({ authedUser, users, tweets }, { id }) {
-  const tweet = tweets[id];
+function mapStateToProps({ authedUser, users, questions }, { id }) {
+  const question = questions[id];
   return {
     authedUser,
     users,
-    tweet: tweet ? formatTweet(tweet, users[tweet.author], authedUser) : null,
+    question: question ? formatQuestion(question, users[question.author], authedUser) : null,
   };
 }
 

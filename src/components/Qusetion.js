@@ -1,17 +1,17 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { formatTweet } from "../utils/helpers";
+import { formatQuestion } from "../utils/helpers";
 import { Link, withRouter } from "react-router-dom";
 
-class Tweet extends Component {
+class Qusetion extends Component {
   render() {
-    const { tweet } = this.props;
+    const { question } = this.props;
 
-    if (tweet === null) {
+    if (question === null) {
       return <p>This question doesn't exists</p>;
     }
 
-    const { name, avatar, optionOne, id } = tweet;
+    const { name, avatar, optionOne, id } = question;
 
     return (
       <div className="question">
@@ -30,11 +30,11 @@ class Tweet extends Component {
   }
 }
 
-function mapStateToProps({ authedUser, users, tweets }, { id }) {
-  const tweet = tweets[id];
+function mapStateToProps({ authedUser, users, questions }, { id }) {
+  const question = questions[id];
   return {
-    tweet: tweet ? formatTweet(tweet, users[tweet.author], authedUser) : null,
+    question: question ? formatQuestion(question, users[question.author], authedUser) : null,
   };
 }
 
-export default withRouter(connect(mapStateToProps)(Tweet));
+export default withRouter(connect(mapStateToProps)(Qusetion));

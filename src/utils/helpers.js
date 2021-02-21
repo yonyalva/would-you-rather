@@ -1,11 +1,5 @@
-export function formatDate (timestamp) {
-  const d = new Date(timestamp)
-  const time = d.toLocaleTimeString('en-US')
-  return time.substr(0, 5) + time.slice(-2) + ' | ' + d.toLocaleDateString()
-}
-
-export function formatTweet (tweet, author, authedUser, parentTweet ) {
-  const { id, text, timestamp, optionOne, optionTwo  } = tweet
+export function formatQuestion (question, author, authedUser) {
+  const { id, text, timestamp, optionOne, optionTwo  } = question
   const { name, avatarURL } = author
 
   return {
@@ -16,18 +10,6 @@ export function formatTweet (tweet, author, authedUser, parentTweet ) {
     avatar: avatarURL,
     optionOne,
     optionTwo,
-    authedUser
-  }
-}
-
-export function formatUser (user, authedUser) {
-  const { answers, name, questions, id } = user
-
-  return {
-    name,
-    id,
-    answers,
-    questions,
     authedUser
   }
 }

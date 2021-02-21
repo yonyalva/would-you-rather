@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import Tweet from "./Tweet";
+import Qusetion from "./Qusetion";
 import { NavLink } from "react-router-dom";
 import Login from "./Login";
 
@@ -27,15 +27,15 @@ class Answered extends Component {
               </ul>
             </nav>
             <ul className="dashboard-list">
-              {this.props.tweetIds
-                .filter((tweetIds) =>
+              {this.props.questionIds
+                .filter((questionIds) =>
                   Object.keys(
                     this.props.users[this.props.authedUser].answers
-                  ).includes(tweetIds)
+                  ).includes(questionIds)
                 )
                 .map((id) => (
                   <li key={id}>
-                    <Tweet id={id} />
+                    <Qusetion id={id} />
                   </li>
                 ))}
             </ul>
@@ -46,12 +46,12 @@ class Answered extends Component {
   }
 }
 
-function mapStateToProps({ tweets, users, authedUser }) {
+function mapStateToProps({ questions, users, authedUser }) {
   return {
     authedUser,
     users,
-    tweetIds: Object.keys(tweets).sort(
-      (a, b) => tweets[b].timestamp - tweets[a].timestamp
+    questionIds: Object.keys(questions).sort(
+      (a, b) => questions[b].timestamp - questions[a].timestamp
     ),
   };
 }
